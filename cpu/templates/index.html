@@ -1,19 +1,28 @@
 <!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>Usage Report</title>
-	<style>
-		code, pre, tt, kbd, samp {
-			font-family: "Noto Sans Mono", monospace;
-		}
-	</style>
-</head>
-<body>
-    <code> Usage Report [{{ date }}]</code>
-	<br>
-	<code>{{ cpu_report }}</code>
-	<br>
-	<code>{{ ram_report }}</code>
-</body>
+  <head>
+    <title>Turbo-Flask Streams Demo</title>
+    <style>
+      .load {
+        float: left;
+        width: 300px;
+        border: 1px solid black;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+		font-family: "Noto Sans Mono", monospace;
+      }
+      .load th, .load td {
+        padding: 6px;
+        text-align: center;
+      }
+    </style>
+    {{ turbo() }}
+  </head>
+  <body>
+	<div id="load" class="load">
+	  <p> {{ cpu }} </p>
+	  <p> {{ ram }} </p>
+	</div>
+  </body>
 </html>
