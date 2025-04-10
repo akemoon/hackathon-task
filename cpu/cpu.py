@@ -36,7 +36,7 @@ def index():
 def update_load():
     with app.app_context():
         while True:
-            time.sleep(1)
+            time.sleep(5)
             turbo.push(turbo.replace(render_template('index.html'), 'load'))
             inject_load()
 
