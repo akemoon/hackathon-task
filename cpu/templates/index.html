@@ -3,10 +3,17 @@
 <head>
     <meta charset="utf-8">
     <title>Usage Report</title>
+	<style>
+		code, pre, tt, kbd, samp {
+			font-family: "Noto Sans Mono", monospace;
+		}
+	</style>
 </head>
 <body>
-    <p>Usage Report [{{ date }}]</p>
-	<p>{{ cpu_report }}</p>
-	<p>{{ ram_report }}</p>
+    <code> Usage Report [{{ date }}]</code>
+	<br>
+	<code>{{ cpu_report }}</code>
+	<br>
+	<code>{{ ram_report }}</code>
 </body>
 </html>
