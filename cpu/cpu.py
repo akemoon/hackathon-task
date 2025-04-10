@@ -10,8 +10,8 @@ def get_bar(percent):
 
 def get_CPU_report():
     return 'cpu {} {}%'.format(
-        get_bar(psutil.cpu_percent()),
-        psutil.cpu_percent()
+        get_bar(psutil.cpu_percent(interval=1)),
+        psutil.cpu_percent(interval=1)
     )
 
 def get_RAM_report():
