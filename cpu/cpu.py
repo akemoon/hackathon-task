@@ -29,7 +29,7 @@ def inject_load():
     load = [int(random.random() * 100) / 100 for _ in range(3)]
     return {'cpu': get_CPU_report(), 'ram': get_RAM_report()}
 
-@app.route('/')
+@app.route('/report')
 def index():
     return render_template('index.html')
 
