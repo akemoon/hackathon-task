@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Turbo-Flask Streams Demo</title>
+    <style>
+      .load {
+        float: left;
+        width: 300px;
+        border: 1px solid black;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+		font-family: "Noto Sans Mono", monospace;
+      }
+      .load th, .load td {
+        padding: 6px;
+        text-align: center;
+      }
+    </style>
+    {{ turbo() }}
+  </head>
+  <body>
+	<div id="load" class="load">
+	  <p> {{ cpu }} </p>
+	  <p> {{ ram }} </p>
+	</div>
+  </body>
+</html>
