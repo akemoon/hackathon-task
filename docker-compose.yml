@@ -1,19 +1,17 @@
+version: '3.8'
+
 services:
   cpu:
     build: 
       context: ./cpu
       dockerfile: Dockerfile
     image: cpu-monitor-image
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5678/cpu"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
     container_name: cpu-monitor
     ports:
       - "5678:5678"
     networks:
       - mynetwork
+
   apache:
     build: 
       context: ./apache
@@ -21,30 +19,22 @@ services:
     image: apache-image 
     container_name: apache
     ports:
-    - "8000:8000"
+      - "8000:8000"
     networks:
       - mynetwork
+
   nginx:
     build: 
       context: ./nginx
       dockerfile: Dockerfile
     image: nginx-image
-    container_name: nginx 
-    command: >
-      sh -c "
-        id nginxuser || adduser --disabled-password --gecos '' nginxuser &&
-        chown -R nginxuser:nginxuser /usr/share/nginx/html &&
-        nginx &&
-        certbot --nginx -d puperpearl.ddns.net --email your@email.com --agree-tos --non-interactive &&
-        nginx -s reload &&
-        tail -f /dev/null"
+    container_name: nginx
     ports:
       - "80:80"
       - "443:443"
-      - "8080:8080"
-      - "8081:8081"
     networks:
       - mynetwork
+
 networks:
   mynetwork:
     driver: bridge
