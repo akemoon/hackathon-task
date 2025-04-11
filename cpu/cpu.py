@@ -26,10 +26,9 @@ def get_RAM_report():
 
 @app.context_processor
 def inject_load():
-    load = [int(random.random() * 100) / 100 for _ in range(3)]
     return {'cpu': get_CPU_report(), 'ram': get_RAM_report()}
 
-@app.route('/report')
+@app.route('/')
 def index():
     return render_template('index.html')
 
@@ -45,4 +44,4 @@ th.daemon = True
 th.start()
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port= 5000, debug=True)
+    app.run(host='0.0.0.0', port= 5000, debug=True)
