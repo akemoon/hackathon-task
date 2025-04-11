@@ -5,5 +5,5 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-EXPOSE 5000
+EXPOSE 5678
 CMD ["python", "cpu.py"]
