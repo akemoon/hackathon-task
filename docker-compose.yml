@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     image: cpu-monitor-image
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5678/"]
+      test: ["CMD", "curl", "-f", "http://localhost:5678/cpu"]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -21,7 +21,7 @@ services:
     image: apache-image 
     container_name: apache
     ports:
-    - "8000:80"
+    - "8000:8000"
     networks:
       - mynetwork
   nginx:

@@ -28,7 +28,7 @@ def get_RAM_report():
 def inject_load():
     return {'cpu': get_CPU_report(), 'ram': get_RAM_report()}
 
-@app.route('/')
+@app.route('/cpu')
 def index():
     return render_template('index.html')
 
