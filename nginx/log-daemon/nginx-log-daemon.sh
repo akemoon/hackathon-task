@@ -11,7 +11,7 @@ touch "$LOG1" "$LOG2" "$LOG3" "$LOG4"
 
 while true; do
     # Write logs
-    tail -n 10 /var/log/nginx/my-access.log >> "$LOG1"
+    tail -n 10 /var/log/nginx/access.log >> "$LOG1"
     
     # Check size of log1 (300 kilobytes = 307200 bytes)
     SIZE=$(stat -c%s "$LOG1")
@@ -22,8 +22,8 @@ while true; do
     fi
     
     # Parse 5xx and 4xx from access.log
-    awk '$9 ~ /^5[0-9][0-9]$/' /var/log/nginx/my-access.log >> "$LOG3"
-    awk '$9 ~ /^4[0-9][0-9]$/' /var/log/nginx/my-access.log >> "$LOG4"
+    awk '$9 ~ /^5[0-9][0-9]$/' /var/log/nginx/access.log >> "$LOG3"
+    awk '$9 ~ /^4[0-9][0-9]$/' /var/log/nginx/access.log >> "$LOG4"
     
     sleep 5
 done
