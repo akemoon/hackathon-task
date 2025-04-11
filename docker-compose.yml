@@ -1,0 +1,44 @@
+services:
+  cpu:
+    build: 
+      context: ./cpu
+      dockerfile: Dockerfile
+    image: cpu-monitor-image
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    container_name: cpu-monitor
+    ports:
+      - "5000:5000"
+    networks:
+      - mynetwork
+  apache:
+    build: 
+      context: ./apache
+      dockerfile: Dockerfile
+    image: apache-image 
+    container_name: apache
+    ports:
+    - "8000:80"
+    networks:
+      - mynetwork
+  nginx:
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: nginx-image
+    container_name: nginx 
+    command: >
+       sh -c "id nginxuser || adduser --disabled-password --gecos '' nginxuser && chown -R nginxuser:nginxuser /usr/share/nginx/html && exec nginx -g 'daemon off;'"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+      - "8081:8081"
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+    driver: bridge
