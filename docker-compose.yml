@@ -31,7 +31,13 @@ services:
     image: nginx-image
     container_name: nginx 
     command: >
-       sh -c "id nginxuser || adduser --disabled-password --gecos '' nginxuser && chown -R nginxuser:nginxuser /usr/share/nginx/html && exec nginx -g 'daemon off;'"
+      sh -c "
+        id nginxuser || adduser --disabled-password --gecos '' nginxuser &&
+        chown -R nginxuser:nginxuser /usr/share/nginx/html &&
+        nginx &&
+        certbot --nginx -d puperpearl.ddns.net --email your@email.com --agree-tos --non-interactive &&
+        nginx -s reload &&
+        tail -f /dev/null"
     ports:
       - "80:80"
       - "443:443"
